@@ -2,8 +2,15 @@
 
 //TODO : Add , Update and delete tasks
 
-tasks = []
+//? imports
+import readline from "node:readline/promises";
+import { stdin as input, stdout as output } from "node:process";
 
-function addTask(){
-    
-}
+tasks = [];
+
+function addTask() {}
+function updateTask() {}
+function deleteTask() {}
+function main() {}
+
+main();
