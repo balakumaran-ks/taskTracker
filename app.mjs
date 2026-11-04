@@ -1,6 +1,5 @@
 import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
-import { run } from "node:test";
 
 const tasks = {}; //stores the task objects as key-val pairs
 
@@ -15,9 +14,42 @@ const tasks = {}; //stores the task objects as key-val pairs
     }
 */
 
-function addTask() {}
-function updateTask() {}
-function deleteTask() {}
+async function addTask(rl) {
+  let id_ = 0;
+  for (let i = 0; i < Number.MAX_SAFE_INTEGER; i++) {
+    if (i in tasks) continue;
+    id_ = i;
+    break;
+  }
+  const description_ = await rl.question("Task Description : ");
+  let opt;
+  let status_;
+  do {
+    opt = await rl.question(`
+        Select the status
+        1.todo
+        2.in-progress
+        3.done
+      `);
+  } while (isNaN(opt) || opt < 1 || opt > 3);
+  if (opt == 1) status_ = "Todo";
+  else if (opt == 2) status_ = "In-Progress";
+  else status_ = "Done";
+  const createdAt_ = new Date().toLocaleString();
+  const updatedAt_ = createdAt_.toString();
+  const task = {
+    id: id_,
+    description: description_,
+    status: status_,
+    createdAt: createdAt_,
+    updatedAt: updatedAt_,
+  };
+  tasks[id_] = task;
+  console.log(task);
+}
+
+function updateTask(rl) {}
+function deleteTask(rl) {}
 
 // loop function for user interaction
 async function main() {
@@ -39,21 +71,20 @@ async function main() {
       continue;
     }
 
+    console.clear();
     if (opt === 1) {
-      addTask();
+      await addTask(rl);
+      let tem = await rl.question("Press Enter...");
     } else if (opt === 2) {
-      updateTask();
+      updateTask(rl);
     } else if (opt === 3) {
-      deleteTask();
+      deleteTask(rl);
     } else {
       running = false;
     }
-    console.log("The operation is finished...");
-
-    // Pause execution for 3000 milliseconds (3 seconds)
-    await delay(3000); //? await setTimeout(3000) === can also use
-
     console.clear();
+    console.log("        The operation is finished...");
+    console.log("\n\n");
   }
   console.clear();
   console.log("All the logs are stored in log files in local machine");
