@@ -36,6 +36,7 @@ async function main() {
     let opt = Number(command);
     if (isNaN(opt) || opt > 4 || opt < 1) {
       console.log(`Please enter a valid option`);
+      continue;
     }
 
     if (opt === 1) {
@@ -47,6 +48,12 @@ async function main() {
     } else {
       running = false;
     }
+    console.log("The operation is finished...");
+
+    // Pause execution for 3000 milliseconds (3 seconds)
+    await delay(3000); //? await setTimeout(3000) === can also use
+
+    console.clear();
   }
   console.clear();
   console.log("All the logs are stored in log files in local machine");
