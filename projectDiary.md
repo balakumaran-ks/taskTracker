@@ -139,3 +139,15 @@ git stash -u
 git checkout my-feature-branch
 git stash pop
 ```
+
+<br>
+<br>
+<br>
+
+Learned how to typecast into numbers
+
+```javascript
+Number(str);
+parseInt(str);
+parseFloat(str);
+```
