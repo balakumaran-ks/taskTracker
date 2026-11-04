@@ -4,8 +4,7 @@ Started working on the project.
 
 ## Getting cli input
 
-#### 1. Single or Sequential Inputs (async/await)  
-
+#### 1. Single or Sequential Inputs (async/await)
 
 This approach uses the standard built-in readline/promises library. It reads linearly without creating messy, nested callback trees.
 
@@ -30,8 +29,7 @@ run();
 
 (Note: Save this file with a .mjs extension, like index.mjs, so Node.js allows the import syntax naturally without a package.json).
 
-#### 2. The Continuous Loop (Native Menu System)  
-
+#### 2. The Continuous Loop (Native Menu System)
 
 If you want to keep prompting the user until they type a specific exit command, you can use a native while loop wrapped inside the async function.
 
@@ -81,4 +79,63 @@ const name = process.argv[2] || 'Guest';
 const age = process.argv[3] || 'Unknown';
 
 console.log(`Arguments received -> Name: ${name}, Age: ${age}`);
+```
+
+<br>
+learned about git stash command
+
+<br>
+
+# Git Stash Cheat Sheet
+
+## 💾 SAVE CHANGES (Put in the drawer)
+
+- `git stash` - Stash tracked changes (modified files)
+- `git stash -u` - Stash tracked AND new untracked files
+- `git stash -a` - Stash everything (including ignored files)
+- `git stash save "my message"` - Stash changes with a descriptive label
+
+## 🔄 RESTORE CHANGES (Take out of the drawer)
+
+- `git stash pop` - Apply latest stash and DELETE it from history
+- `git stash apply` - Apply latest stash but KEEP it in the list
+- `git stash apply stash@{2}` - Apply a specific stash from the history list
+
+## 📋 VIEW & CHECK (See what's inside)
+
+- `git stash list` - View all saved stashes with index numbers
+- `git stash show` - See summary of changes in the latest stash
+- `git stash show -p` - See the full detailed diff of the latest stash
+
+## 🗑️ CLEAN UP (Delete stashes)
+
+- `git stash drop stash@{1}` - Delete one specific stash
+- `git stash clear` - Delete ALL stashes permanently
+
+## 🚀 ADVANCED TRICKS
+
+- `git stash branch <name>` - Create a new branch and pop your stash into it
+
+---
+
+## 💡 Quick Scenario Guide
+
+### Scenario 1
+
+"I need to pull the latest main branch code, but my current work isn't ready to commit yet."
+
+```bash
+git stash -u
+git pull origin main
+git stash pop
+```
+
+### Scenario 2
+
+"I accidentally started working on the main branch instead of my feature branch!"
+
+```bash
+git stash -u
+git checkout my-feature-branch
+git stash pop
 ```
