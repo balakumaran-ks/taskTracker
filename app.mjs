@@ -12,6 +12,11 @@ const tasks = {}; //stores the task objects as key-val pairs
         createdAt : timestamp of creation
         updatedAt : timestamp of last update
     }
+
+    tasks -> object of objects
+    {
+        id : task object
+    }
 */
 
 async function addTask(rl) {
@@ -55,8 +60,15 @@ async function updateTask(rl) {
   } while (isNaN(taskId) || !(taskId in tasks));
 
   const task = tasks[taskId];
+  console.log(task);
 }
-function deleteTask(rl) {}
+function deleteTask(rl) {
+  let taskId;
+  do {
+    taskId = rl.question(`Enter a valid task id for deletion : `);
+  } while (isNaN(taskId) || !(taskId in tasks));
+  delete tasks[taskId];
+}
 
 // loop function for user interaction
 async function main() {
