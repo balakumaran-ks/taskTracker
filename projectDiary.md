@@ -195,7 +195,7 @@ for (const key in user) {
 <br>
 <br>
 
-#### Learned about basic string cleanup in Js
+#### Learned about basic string methods in Js
 
 Quick Cheat Sheet
 
