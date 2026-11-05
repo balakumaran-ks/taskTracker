@@ -191,3 +191,18 @@ for (const key in user) {
   }
 }
 ```
+
+<br>
+<br>
+
+#### Learned about basic string cleanup in Js
+
+Quick Cheat Sheet
+
+| Cleanup Goal       | Code Snippet                                         |
+| ------------------ | ---------------------------------------------------- |
+| Remove edge spaces | str.trim()                                           |
+| Remove all spaces  | str.replace(/\s/g, '')                               |
+| Keep ONLY numbers  | str.replace(/[^0-9]/g, '')                           |
+| Keep ONLY alphabet | str.replace(/[^a-zA-Z]/g, '')                        |
+| URL-safe Slugs     | str.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-') |
