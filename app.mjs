@@ -63,10 +63,41 @@ async function addTask(rl) {
 async function updateTask(rl) {
   let taskId;
   do {
-    taskId = await rl.question(`Enter a valid task id: `);
+    taskId = await rl.question(
+      `Enter a valid task id (-1 to return to main menu): `,
+    );
+    if (taskId == -1) return;
   } while (isNaN(taskId) || !(taskId in tasks));
 
   const task = tasks[taskId];
+  console.log(`Selected task details : `);
+  console.log(task);
+  console.log("\n");
+
+  //new description
+  const newDescription = await rl.question(
+    `New Description (Leave empty if same as old) : `,
+  );
+  if (newDescription.trim() !== "") task.description = newDescription;
+
+  let option;
+  let status_;
+  do {
+    option = await rl.question(`
+        Select the status
+        1.todo
+        2.in-progress
+        3.done
+      `);
+  } while (isNaN(option) || option < 1 || option > 3);
+  if (option == 1) status_ = "Todo";
+  else if (option == 2) status_ = "In-Progress";
+  else status_ = "Done";
+
+  task.status = status_;
+  task.updatedAt = new Date().toLocaleString();
+
+  console.log(`Task after update:`);
   console.log(task);
 }
 
@@ -74,7 +105,10 @@ async function updateTask(rl) {
 async function deleteTask(rl) {
   let taskId;
   do {
-    taskId = await rl.question(`Enter a valid task id for deletion : `);
+    taskId = await rl.question(
+      `Enter a valid task id for deletion (-1 to cancel): `,
+    );
+    if (taskId == -1) return;
   } while (isNaN(taskId) || !(taskId in tasks));
   delete tasks[taskId];
 }
