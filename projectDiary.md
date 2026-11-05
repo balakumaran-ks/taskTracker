@@ -162,3 +162,32 @@ parseFloat(str);
 ###### Thu Nov 5 11:02:43 IST 2026
 
 filled up the 3 basic methods into templates.
+
+<br>
+<br>
+Learned about js object iteration
+
+```javascript
+const user = { name: "Alex", age: 30, role: "Admin" };
+
+for (const [key, value] of Object.entries(user)) {
+  console.log(`${key}: ${value}`);
+}
+
+// 1. Iterate over keys only
+Object.keys(user).forEach((key) => {
+  console.log(key); // Output: 'name', 'age', 'role'
+});
+
+// 2. Iterate over values only
+Object.values(user).forEach((value) => {
+  console.log(value); // Output: 'Alex', 30, 'Admin'
+});
+
+// best for working in legacy systems
+for (const key in user) {
+  if (user.hasOwnProperty(key)) {
+    console.log(`${key}: ${user[key]}`);
+  }
+}
+```
