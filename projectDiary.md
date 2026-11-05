@@ -151,3 +151,14 @@ Number(str);
 parseInt(str);
 parseFloat(str);
 ```
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+###### Thu Nov 5 11:02:43 IST 2026
+
+filled up the 3 basic methods into templates.
