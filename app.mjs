@@ -19,6 +19,13 @@ const tasks = {}; //stores the task objects as key-val pairs
     }
 */
 
+function viewAllTasks() {
+  Object.values(tasks).forEach((task) => {
+    console.log(task);
+    console.log("\n");
+  });
+}
+
 async function addTask(rl) {
   let id_ = 0;
   for (let i = 0; i < Number.MAX_SAFE_INTEGER; i++) {
@@ -27,18 +34,18 @@ async function addTask(rl) {
     break;
   }
   const description_ = await rl.question("Task Description : ");
-  let opt;
+  let option;
   let status_;
   do {
-    opt = await rl.question(`
+    option = await rl.question(`
         Select the status
         1.todo
         2.in-progress
         3.done
       `);
-  } while (isNaN(opt) || opt < 1 || opt > 3);
-  if (opt == 1) status_ = "Todo";
-  else if (opt == 2) status_ = "In-Progress";
+  } while (isNaN(option) || option < 1 || option > 3);
+  if (option == 1) status_ = "Todo";
+  else if (option == 2) status_ = "In-Progress";
   else status_ = "Done";
   const createdAt_ = new Date().toLocaleString();
   const updatedAt_ = createdAt_.toString();
@@ -56,16 +63,16 @@ async function addTask(rl) {
 async function updateTask(rl) {
   let taskId;
   do {
-    taskId = rl.question(`Enter a valid task id: `);
+    taskId = await rl.question(`Enter a valid task id: `);
   } while (isNaN(taskId) || !(taskId in tasks));
 
   const task = tasks[taskId];
   console.log(task);
 }
-function deleteTask(rl) {
+async function deleteTask(rl) {
   let taskId;
   do {
-    taskId = rl.question(`Enter a valid task id for deletion : `);
+    taskId = await rl.question(`Enter a valid task id for deletion : `);
   } while (isNaN(taskId) || !(taskId in tasks));
   delete tasks[taskId];
 }
@@ -84,22 +91,22 @@ async function main() {
 
         `);
 
-    let opt = Number(command);
-    if (isNaN(opt) || opt > 4 || opt < 1) {
-      console.log(`Please enter a valid option`);
+    let option = Number(command);
+    if (isNaN(option) || option > 4 || option < 1) {
+      console.log(`Please enter a valid optionion`);
       continue;
     }
 
     console.clear();
-    if (opt === 1) {
+    if (option === 1) {
       await addTask(rl);
-      let tem = await rl.question("Press Enter...");
-    } else if (opt === 2) {
+      await rl.question("Press Enter..."); // buffer
+    } else if (option === 2) {
       await updateTask(rl);
-      let tem = await rl.question("Press Enter...");
-    } else if (opt === 3) {
+      await rl.question("Press Enter...");
+    } else if (option === 3) {
       await deleteTask(rl);
-      let tem = await rl.question("Press Enter...");
+      await rl.question("Press Enter...");
     } else {
       running = false;
     }
