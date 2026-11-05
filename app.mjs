@@ -2,6 +2,7 @@ import readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 
 const tasks = {}; //stores the task objects as key-val pairs
+let TASKID = 1; // universal task id for generating sequence
 
 /*
     task -> object
@@ -19,20 +20,18 @@ const tasks = {}; //stores the task objects as key-val pairs
     }
 */
 
-function viewAllTasks() {
+// console log all the tasks one by one
+async function viewAllTasks() {
   Object.values(tasks).forEach((task) => {
     console.log(task);
     console.log("\n");
   });
 }
 
+//adds a task to the list
 async function addTask(rl) {
-  let id_ = 0;
-  for (let i = 0; i < Number.MAX_SAFE_INTEGER; i++) {
-    if (i in tasks) continue;
-    id_ = i;
-    break;
-  }
+  let id_ = TASKID;
+  TASKID += 1;
   const description_ = await rl.question("Task Description : ");
   let option;
   let status_;
@@ -60,6 +59,7 @@ async function addTask(rl) {
   console.log(task);
 }
 
+//update the existing task details
 async function updateTask(rl) {
   let taskId;
   do {
@@ -69,6 +69,8 @@ async function updateTask(rl) {
   const task = tasks[taskId];
   console.log(task);
 }
+
+//delete the specified task from the list
 async function deleteTask(rl) {
   let taskId;
   do {
@@ -87,12 +89,13 @@ async function main() {
         1. New task
         2. Update task
         3. Delete task
-        4. Exit
+        4. Show all tasks 
+        5. Exit
 
         `);
 
     let option = Number(command);
-    if (isNaN(option) || option > 4 || option < 1) {
+    if (isNaN(option) || option > 5 || option < 1) {
       console.log(`Please enter a valid optionion`);
       continue;
     }
@@ -107,6 +110,9 @@ async function main() {
     } else if (option === 3) {
       await deleteTask(rl);
       await rl.question("Press Enter...");
+    } else if (option == 4) {
+      await viewAllTasks();
+      await rl.question(`Press Enter...`);
     } else {
       running = false;
     }
