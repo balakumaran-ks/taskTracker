@@ -206,3 +206,27 @@ Quick Cheat Sheet
 | Keep ONLY numbers  | str.replace(/[^0-9]/g, '')                           |
 | Keep ONLY alphabet | str.replace(/[^a-zA-Z]/g, '')                        |
 | URL-safe Slugs     | str.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-') |
+
+<br>
+<br>
+
+| Category   | Method        | Syntax Example            | Returns | What It Does                                                                 |
+| ---------- | ------------- | ------------------------- | ------- | ---------------------------------------------------------------------------- |
+| Searching  | includes()    | str.includes('Java')      | Boolean | Checks if a substring exists anywhere inside the string.                     |
+|            | startsWith()  | str.startsWith('J')       | Boolean | Checks if the string begins with the specified characters.                   |
+|            | endsWith()    | str.endsWith('Script')    | Boolean | Checks if the string ends with the specified characters.                     |
+|            | indexOf()     | str.indexOf('a')          | Number  | Returns the index of the first occurrence of a value, or -1.                 |
+|            | lastIndexOf() | str.lastIndexOf('a')      | Number  | Returns the index of the last occurrence of a value, or -1.                  |
+|            | search()      | str.search(/regex/)       | Number  | Searches via Regular Expression and returns the first match index.           |
+| Extracting | slice()       | str.slice(start, end)     | String  | Extracts a section from start up to end (supports negative index).           |
+|            | substring()   | str.substring(start, end) | String  | Extracts a section between two indices (negative numbers become 0).          |
+|            | charAt()      | str.charAt(0)             | String  | Returns the character at the specified index (same as str[0]).               |
+| Formatting | toLowerCase() | str.toLowerCase()         | String  | Converts all characters in the string to lowercase.                          |
+|            | toUpperCase() | str.toUpperCase()         | String  | Converts all characters in the string to uppercase.                          |
+|            | trim()        | str.trim()                | String  | Strips whitespace, tabs, and newlines from both ends.                        |
+|            | padStart()    | str.padStart(5, '0')      | String  | Pads the start of a string with a character until it hits the target length. |
+|            | padEnd()      | str.padEnd(5, '!')        | String  | Pads the end of a string with a character until it hits the target length.   |
+|            | repeat()      | str.repeat(3)             | String  | Returns a new string with the original text repeated N times.                |
+| Transform  | split()       | str.split(', ')           | Array   | Splits a string into an array of substrings based on a separator.            |
+|            | replace()     | str.replace('a', 'b')     | String  | Replaces the first instance of a matching string or regular expression.      |
+|            | replaceAll()  | str.replaceAll('a', 'b')  | String  | Replaces all instances of a matching string or regular expression.           |
