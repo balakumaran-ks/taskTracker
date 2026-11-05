@@ -48,7 +48,14 @@ async function addTask(rl) {
   console.log(task);
 }
 
-function updateTask(rl) {}
+async function updateTask(rl) {
+  let taskId;
+  do {
+    taskId = rl.question(`Enter a valid task id: `);
+  } while (isNaN(taskId) || !(taskId in tasks));
+
+  const task = tasks[taskId];
+}
 function deleteTask(rl) {}
 
 // loop function for user interaction
@@ -76,9 +83,11 @@ async function main() {
       await addTask(rl);
       let tem = await rl.question("Press Enter...");
     } else if (opt === 2) {
-      updateTask(rl);
+      await updateTask(rl);
+      let tem = await rl.question("Press Enter...");
     } else if (opt === 3) {
-      deleteTask(rl);
+      await deleteTask(rl);
+      let tem = await rl.question("Press Enter...");
     } else {
       running = false;
     }
