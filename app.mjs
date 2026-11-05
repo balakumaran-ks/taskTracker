@@ -32,7 +32,10 @@ async function viewAllTasks() {
 async function addTask(rl) {
   let id_ = TASKID;
   TASKID += 1;
-  const description_ = await rl.question("Task Description : ");
+  let description_ = await rl.question("Task Description : ");
+  while (description_.trim() === "") {
+    description_ = await rl.question("Please enter a valid Description : ");
+  }
   let option;
   let status_;
   do {
@@ -151,8 +154,7 @@ async function main() {
       running = false;
     }
     console.clear();
-    console.log("        The operation is finished...");
-    console.log("\n\n");
+    console.log("The operation is finished...");
   }
   console.clear();
   console.log("All the logs are stored in log files in local machine");
